@@ -1,0 +1,97 @@
+/* General settings */
+* {
+	/* Fixing the box-sizing issue */
+	/* Explanation: https://www.w3schools.com/css/css3_box-sizing.asp */
+	box-sizing: border-box;
+
+	/* Setting all default margin and padding to 0, because elements have pretty arbitary initial settings */
+	margin: 0;
+	padding: 0;
+
+	/* Smooth scrolliing when anchor links pressed */
+	scroll-behavior: smooth;
+}
+
+[contenteditable="true"]:active, [contenteditable="true"]:focus
+{
+    border:none;
+    outline:none;
+}
+
+
+
+/* Font faces */
+@font-face {
+    font-family: "Interstellar Medium";
+    src: url(ass/InterstellarMediumVF.ttf);
+}
+
+
+
+/* Titles */
+h1 {
+    font-family: Helvetica;
+    font-size: 48px;
+    font-weight: 100;
+}
+
+h2 {
+    font-family: futura;
+    font-size: 24px;
+}
+
+p {
+    font-family: Helvetica;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+
+/* Photo gallery grid */ 
+:root{
+    --gallery-width: 95vw;
+    --gallery-columns: 3;
+    --gallery-gap: 1vw;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns:
+        repeat(var(--gallery-columns), 1fr);
+    gap: var(--gallery-gap);
+    width: var(--gallery-width);
+    margin: calc((100vw - var(--gallery-width))/2);
+}
+
+.photo-child {
+    display: grid;
+    place-content: center;
+
+    /* roughly 4/3 width-to-height ratio for each child */ 
+    height: calc(var(--gallery-width)/var(--gallery-columns) / 3 * 4);
+
+    border-radius: var(--gallery-gap);
+    background: #5a2072;
+    color: white;
+
+    /* to ensure that images don't overflow */
+    overflow: hidden;
+}
+
+.photo-child img {
+    width: 100%;
+    height: 100%;
+    /* To make image span the entire parent div */
+    object-fit: cover;
+}
+
+
+
+/* Responsive design */
+@media (max-width: 500px) {
+    :root {
+    --gallery-columns: 2;
+    }
+}
